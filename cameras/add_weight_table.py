@@ -11,11 +11,11 @@ def main():
     weight = create_cos(height, width)
     
     while(cap.isOpened()):
-        ret, frame = cap.read().astype(np.float32) / 255
+        ret, frame = cap.read()
 
         #result = cv2.multiply(frame, weight)
 
-        #cv2.imshow("raw", result)
+        cv2.imshow("raw", frame)
         
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
