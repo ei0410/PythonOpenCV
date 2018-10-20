@@ -18,7 +18,7 @@ def main():
 
         cv2.imshow("raw", dilate)
         
-        if cv2.waitKey(1) & 0xFF == ord('q'):
+        if cv2.waitkey(1) & 0xff == ord('q'):
             break
 
     cap.release()
