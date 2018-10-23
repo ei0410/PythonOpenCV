@@ -1,15 +1,24 @@
 import cv2
+import numpy as np
 
 def main():
     cap = cv2.VideoCapture(0)
-	#cascade = cv2.CascadeClassifier('haarcascade_fullbody.xml')
-	f_cascade = cv2.CascadeClassifier('/home/ei0124/PythonOpenCV/cameras/haarcascade_fullbody.xml')
+
+    #cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
+    cascade = cv2.CascadeClassifier("haarcascade_fullbody.xml")
+    
     while(cap.isOpened()):
         ret, frame = cap.read()
 
-        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        #gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
-        cv2.imshow("gray", gray)
+        #face = cascade.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=3, minSize=(30, 30))
+        face = cascade.detectMultiScale(frame, scaleFactor=1.1, minNeighbors=3, minSize=(30, 30))
+
+        for (x, y, w, h) in face:
+            cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 0, 200), 3)
+
+        cv2.imshow("image", frame)
         
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
