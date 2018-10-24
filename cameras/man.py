@@ -10,6 +10,8 @@ def main():
     cascade = cv2.CascadeClassifier("haarcascade_fullbody.xml")
 
     save_path = "./outputs/"
+
+    count = 0
     
     while(cap.isOpened()):
         # get camera image
@@ -27,6 +29,9 @@ def main():
         if len(man) > 0:
             cv2.imwrite(save_path + now + ".jpg", frame)
             print now
+            count += 1
+            if count > 5:
+                break
 
         cv2.imshow("image", frame)
         
