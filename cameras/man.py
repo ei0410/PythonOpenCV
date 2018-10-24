@@ -1,5 +1,7 @@
 import cv2
 import numpy as np
+#import time
+import datetime
 
 def main():
     cap = cv2.VideoCapture(0)
@@ -15,11 +17,18 @@ def main():
 
         man = cascade.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=3, minSize=(30, 30))
 
+        #now = datetime.now()
+        #print now
+
+        #now = datetime.datetime.now()
+        now = datetime.datetime.now().strftime("%Y-%m-%d_%H:%M:%S")
+
         for (x, y, w, h) in man:
             cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 0, 200), 3)
 
         if len(man) > 0:
-            cv2.imwrite(save_path + "output.jpg", frame)
+            cv2.imwrite(save_path + now + ".jpg", frame)
+            print now
 
         cv2.imshow("image", frame)
         
