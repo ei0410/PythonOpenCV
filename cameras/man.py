@@ -19,16 +19,28 @@ def main():
 
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
-        man = cascade.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=3, minSize=(30, 30))
+        hist_gray = cv2.equalizeHist(gray)
+
+        man = cascade.detectMultiScale(hist_gray, scaleFactor=1.1, minNeighbors=3, minSize=(30, 30))
 
         now = datetime.datetime.now().strftime("%Y-%m-%d_%H:%M:%S")
 
-        #for (x, y, w, h) in man:
-        #    cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 0, 200), 3)
+        for (x, y, w, h) in man:
+            cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 0, 200), 3)
 
         if len(man) > 0:
-            cv2.imwrite(save_path + now + ".jpg", frame)
+            x = man[0][0]
+            y = man[0][1]
+            w = man[0][2]
+            h = man[0][3]
+
+            dst = frame[y:y+h, x:x+w]
+
+            #cv2.imwrite(save_path + now + ".jpg", frame)
+            cv2.imwrite(save_path + now + "_raw.jpg", frame)
+            cv2.imwrite(save_path + now + ".jpg", dst)
             print now
+
             count += 1
             #if count > 5:
             #    break

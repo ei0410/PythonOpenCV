@@ -29,6 +29,10 @@ def main():
 
     face = cascade.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=3, minSize=(30, 30))
 
+    if face is ():
+        print("Error!")
+        sys.exit()
+
     #x = face[0][0]
     y = face[0][1]
     #w = face[0][2]
