@@ -15,7 +15,7 @@ def main():
 
         #ret, th = cv2.threshold(gray, 0, 255, cv2.THRESH_OTHU)
 
-        cv2.imshow("raw", th)
+        cv2.imshow("binary", th)
         
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break

@@ -1,20 +1,19 @@
 import cv2
-import sys
 import numpy as np
 
 def main():
     cap = cv2.VideoCapture(0)
 
-	hog = cv2.HOGDescriptor()
-	hog.setSVMDetetor(cv2.HOGDescriptor_getDefaultPeopleDetector())
-	hogParams = {'winStride': (8, 8), 'padding': (32, 32), 'scale':1.05}
-
+    cascade = cv2.CascadeClassifier("haarcascade_fullbody.xml")
+    
     while(cap.isOpened()):
         ret, frame = cap.read()
 
-		human, r = hog.detectMultScale(frame, **hogParams)
+        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
-        for (x, y, w, h) in human:
+        man = cascade.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=3, minSize=(30, 30))
+
+        for (x, y, w, h) in face:
             cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 0, 200), 3)
 
         cv2.imshow("image", frame)
