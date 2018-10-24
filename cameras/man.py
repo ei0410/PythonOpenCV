@@ -23,15 +23,15 @@ def main():
 
         now = datetime.datetime.now().strftime("%Y-%m-%d_%H:%M:%S")
 
-        for (x, y, w, h) in man:
-            cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 0, 200), 3)
+        #for (x, y, w, h) in man:
+        #    cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 0, 200), 3)
 
         if len(man) > 0:
             cv2.imwrite(save_path + now + ".jpg", frame)
             print now
             count += 1
-            if count > 5:
-                break
+            #if count > 5:
+            #    break
 
         cv2.imshow("image", frame)
         
