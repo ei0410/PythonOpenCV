@@ -1,26 +1,24 @@
 import cv2
 import numpy as np
-#import time
 import datetime
 
 def main():
+    # get camera
     cap = cv2.VideoCapture(0)
 
+    # set cascade file
     cascade = cv2.CascadeClassifier("haarcascade_fullbody.xml")
 
     save_path = "./outputs/"
     
     while(cap.isOpened()):
+        # get camera image
         ret, frame = cap.read()
 
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
         man = cascade.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=3, minSize=(30, 30))
 
-        #now = datetime.now()
-        #print now
-
-        #now = datetime.datetime.now()
         now = datetime.datetime.now().strftime("%Y-%m-%d_%H:%M:%S")
 
         for (x, y, w, h) in man:
