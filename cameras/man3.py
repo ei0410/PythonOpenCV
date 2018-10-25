@@ -52,10 +52,11 @@ def main():
                 #cv2.imwrite(save_path + now + ".jpg", frame)
                 cv2.imwrite(save_path + now + ".jpg", dst)
 
-                print('mx: '+str(mx)+'\t'+' my: '+str(my)+'\t'
-                    +' mw: '+str(mw)+'\t'+' mh: '+str(mh)+'\t'
-                    +' fx: '+str(fx)+'\t'+' fy: '+str(fy)+'\t'
-                    +' fw: '+str(fw)+'\t'+' fh: '+str(fh))
+                print('mx: '+str(mx).rjust(4)+'\t'+' my: '+str(my).rjust(4)+'\t'
+                    +' mw: '+str(mw).rjust(4)+'\t'+' mh: '+str(mh).rjust(4)+'\t'
+                    +' fx: '+str(fx).rjust(4)+'\t'+' fy: '+str(fy).rjust(4)+'\t'
+                    +' fw: '+str(fw).rjust(4)+'\t'+' fh: '+str(fh).rjust(4))
+
             #cv2.imwrite(save_path + now + "_raw.jpg", frame)
             #cv2.imwrite(save_path + now + ".jpg", dst)
             #print(now)
