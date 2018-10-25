@@ -51,6 +51,7 @@ def main():
                 dst = frame[my:my+mh, mx:mx+mw]
                 #cv2.imwrite(save_path + now + ".jpg", frame)
                 cv2.imwrite(save_path + now + ".jpg", dst)
+
                 print('mx: '+str(mx)+'\t'+' my: '+str(my)+'\t'
                     +' mw: '+str(mw)+'\t'+' mh: '+str(mh)+'\t'
                     +' fx: '+str(fx)+'\t'+' fy: '+str(fy)+'\t'
