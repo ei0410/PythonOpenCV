@@ -1,6 +1,19 @@
 import cv2
 import numpy as np
 import datetime
+from chainercv.links import SSD300
+from chainercv.datasets import voc_bbox_label_names
+
+model = SSD300(n_fg_class=len(voc_bbox_label_names), pretrained_model='voc0712')
+
+def crop_human(img):
+  input_img = img.transpose(2, 0, 1)
+  bboxes, labels, scores = model.predict([input_img])
+  if 14 in labels[0]:
+    img = img
+    bbox = [int(i) for i in bboxes[0][0]]
+    croped_img = img[bbox[0]:bbox[2], bbox[1]:bbox[3], :]
+    return croped_img
 
 def main():
     # get camera
@@ -15,6 +28,15 @@ def main():
         # get camera image
         ret, frame = cap.read()
 
+        cropped_img = crop_human(frame)
+
+        h, w, c = cropped_img.shape
+        
+        if h > 0 and w > 0:
+            cv2.imshow('cropped', cropped_img)
+        else:
+            print(str(h) + ' ' + str(w))
+        
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
         hist_gray = cv2.equalizeHist(gray)
@@ -67,7 +89,7 @@ def main():
                 +' fw: '+str(fw)+'\t'+' fh: '+str(fh))
             """
 
-        cv2.imshow("image", frame)
+        #cv2.imshow("image", frame)
         
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
