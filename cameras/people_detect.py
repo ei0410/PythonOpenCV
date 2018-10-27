@@ -65,7 +65,7 @@ def use_cascade(frame, face_cascade):
 
         dst = frame[my:my+mh, mx:mx+mw]
 
-        if (mx < fx) and (my - int(my/4)< fy) and (mx + mw > fx + fw) and (my + mh > fy + fh):
+        if (mx < fx) and (my - int(mh/4)< fy) and (mx + mw > fx + fw) and (my + mh > fy + fh):
             dst = frame[my-int(mh/4):my+mh, mx:mx+mw]
             #cv2.imwrite(save_path + now + ".jpg", frame)
             cv2.imwrite(save_path + now + ".jpg", dst)
