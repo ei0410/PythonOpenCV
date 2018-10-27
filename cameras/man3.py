@@ -84,12 +84,6 @@ def main():
             #cv2.imwrite(save_path + now + "_raw.jpg", frame)
             #cv2.imwrite(save_path + now + ".jpg", dst)
             #print(now)
-            """
-            print('mx: '+str(mx)+'\t'+' my: '+str(my)+'\t'
-                +' mw: '+str(mw)+'\t'+' mh: '+str(mh)+'\t'
-                +' fx: '+str(fx)+'\t'+' fy: '+str(fy)+'\t'
-                +' fw: '+str(fw)+'\t'+' fh: '+str(fh))
-            """
 
         cv2.imshow("image", frame)
         
