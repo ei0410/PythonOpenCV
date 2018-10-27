@@ -13,7 +13,8 @@ def crop_human(img):
     img = img
     bbox = [int(i) for i in bboxes[0][0]]
     croped_img = img[bbox[0]:bbox[2], bbox[1]:bbox[3], :]
-    return croped_img
+    return croped_img, scores[0][0]
+  return None, 0
 
 def main():
     # get camera
@@ -28,9 +29,10 @@ def main():
         # get camera image
         ret, frame = cap.read()
 
-        cropped_img = crop_human(frame)
+        cropped_img, score = crop_human(frame)
 
         h, w, c = cropped_img.shape
+        print(score)
         
         if h > 0 and w > 0:
             cv2.imshow('cropped', cropped_img)
